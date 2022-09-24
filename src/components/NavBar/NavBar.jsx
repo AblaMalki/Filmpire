@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
@@ -9,7 +9,7 @@ import useStyles from './styles';
 import { Search, Sidebar } from '../index';
 import { setUser } from '../../features/auth';
 import { fetchToken, createSessionId, moviesApi } from '../../utils/index';
-// import { ColorModeContext } from '../../utils/ToggleColorMode';
+import { ColorModeContext } from '../../utils/ToggleColorMode';
 
 function Navbar() {
   const classes = useStyles();
@@ -19,7 +19,7 @@ function Navbar() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // const colorMode = useContext(ColorModeContext);
+  const colorMode = useContext(ColorModeContext);
 
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
@@ -59,7 +59,7 @@ function Navbar() {
           <IconButton
             color="inherit"
             sx={{ ml: 1 }}
-            // onClick={colorMode.toggleColorMode}
+            onClick={colorMode.toggleColorMode}
           >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
