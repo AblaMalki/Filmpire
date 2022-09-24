@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 
-import { MovieList } from '../index';
+import { MovieList, Pagination } from '../index';
 import { useGetMoviesQuery } from '../../services/TMDB';
-import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 
 function Movies() {
   const [page, setPage] = useState(1);
@@ -40,7 +39,7 @@ function Movies() {
     <div>
       {/* <FeaturedMovie movie={data.results[0]} /> */}
       <MovieList movies={data} numberOfMovies={numberOfMovies} excludeFirst />
-      {/* <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} /> */}
+      <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
     </div>
   );
 }
