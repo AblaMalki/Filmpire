@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -25,6 +24,11 @@ function Sidebar({ setMobileOpen }) {
   const dispatch = useDispatch();
   const { data, isFetching } = useGetGenresQuery();
   const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
+
   return (
     <>
       <Link to="/" className={classes.imageLink}>
